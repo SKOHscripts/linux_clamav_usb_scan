@@ -28,7 +28,7 @@ fi
 which clamav > /dev/null
 if [ $? = 1 ]
 then
-	sudo apt install -y clamav
+	sudo apt install -y clamav clamav-daemon
 fi
 
     echo ""
@@ -38,9 +38,9 @@ fi
     done
     echo -e " $neutre"
     notify-send -i system-software-update "Clamav" "Mises à jour"
-    sudo systemctl stop clamav-freshclam
+    systemctl stop clamav-freshclam
     sudo freshclam
-    sudo systemctl start clamav-freshclam
+    systemctl start clamav-freshclam
     echo " "
 
     echo -e -n "$vert [2/2]$rouge SCAN "
@@ -48,8 +48,10 @@ fi
         do echo -n "."
     done
     echo -e " $neutre"
+    echo > log_clamav.txt
     notify-send -i system-software-update "Clamav" "Scan"
-    clamscan -r -i --remove --bell --log=log_clamav.txt /media/
+    inputStr=$(zenity --file-selection --directory "${HOME}")
+    clamscan -r --remove --bell --log=log_clamav.txt $inputStr
     echo " "
 
     notify-send -i dialog-ok "Clamav" "Scan terminé"
