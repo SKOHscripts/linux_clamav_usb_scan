@@ -1,4 +1,5 @@
 # linux-clamav_usb_scan
+<img align="right" src="https://www.clamav.net/assets/clamav-trademark.png">
 
 [![support](
 https://brianmacdonald.github.io/Ethonate/svg/eth-support-blue.svg)](
