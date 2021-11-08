@@ -37,6 +37,7 @@ fi
         do echo -n "."
     done
     echo -e " $neutre"
+    zenity --info --width=300 --height=100 --text "You will be asked to enter your sudo password to update the virus database."
     notify-send -i system-software-update "Clamav" "Mises à jour"
     systemctl stop clamav-freshclam
     sudo freshclam
@@ -49,6 +50,7 @@ fi
     done
     echo -e " $neutre"
     echo > log_clamav.txt
+    zenity --info --width=300 --height=100 --text "Please select the folder you want to scan."
     notify-send -i system-software-update "Clamav" "Scan"
     inputStr=$(zenity --file-selection --directory "${HOME}")
     clamscan -r --remove --bell --log=log_clamav.txt $inputStr
