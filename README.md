@@ -1,12 +1,10 @@
 # linux-clamav_usb_scan
 
-![Creative Commons](cc.png)
-
-Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0)
-
 [![support](
 https://brianmacdonald.github.io/Ethonate/svg/eth-support-blue.svg)](
 https://brianmacdonald.github.io/Ethonate/address#0xEDa4b087fac5faa86c43D0ab5EfCa7C525d475C2)
+
+![GitHub](https://img.shields.io/github/license/M66B/FairEmail.svg)
 
 <p>Un script shell qui utilise ClamAV®, un antivirus open-source, pour détecter les chevaux de Troie, les virus, les malwares et autres menaces.</p>
 
@@ -91,3 +89,13 @@ fi
 
     notify-send -i dialog-ok "Clamav" "Scan terminé"
 ```
+## License
+
+Copyright &copy; 2020-2021 Corentin Michel. All rights reserved.
+
+[GNU General Public License version 3](https://www.gnu.org/licenses/gpl.txt)
+
+> This script is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+
+> This script is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
