@@ -12,7 +12,7 @@ Pour lancer le script, ne pas oublier d'autoriser l'exécution : <br/>`chmod +x 
 
 Puis se placer dans le dossier et exécuter le script : <br/>`./clamav.sh`
 
-Et voilà, après tout se fait tout seul.
+Et voilà, après tout se fait tout seul. Le résultat du scan sera sauvegardé dans un fichier log `log_clamav.txt`.
 
 Une prochaine mise à jour permettra de choisir le dossier à scanner.
 
@@ -26,7 +26,7 @@ To launch the script, don't forget to authorize the execution : <br/>`chmod +x .
 
 Then place yourself in the folder and execute the script: <br/>`./clamav.sh`
 
-And that's it, then everything is done by itself.
+And that's it, then everything is done by itself. The scan result will be saved in a log file `log_clamav.txt`.
 
 A future update will allow you to choose the folder to scan.
 
