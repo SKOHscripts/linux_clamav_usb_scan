@@ -7,7 +7,7 @@ https://brianmacdonald.github.io/Ethonate/address#0xEDa4b087fac5faa86c43D0ab5EfC
 
 <p>Un script shell qui utilise ClamAV®, un antivirus open-source, pour détecter les chevaux de Troie, les virus, les malwares et autres menaces.</p>
 
-<p>Une initialisation permet de mettre à jour la base de donnée régulièrement améliorée par la communauté. Le script va ensuite scanner le dossier /media/, dans lequel se trouvent les clefs USB et autre disques durs externes.</a>
+<p>Une initialisation permet de mettre à jour la base de donnée régulièrement améliorée par la communauté. Le script va ensuite scanner le dossier sélectionner, qui peut être /media/, dans lequel se trouvent les clefs USB et autre disques durs externes.</a>
 
 Pour lancer le script, ne pas oublier d'autoriser l'exécution : <br/>`chmod +x ./clamav.sh`
 
@@ -21,7 +21,7 @@ Une prochaine mise à jour permettra de choisir le dossier à scanner.
 
 <p>A shell script that allows to do a complete maintenance of the Linux system (under Ubuntu). Useful <p>A shell script that uses ClamAV®, an open-source antivirus, to detect Trojans, viruses, malware and other threats.</p>
 
-<p>An initialization is used to update the database regularly enhanced by the community. The script will then scan the /media/ folder, where USB sticks and other external hard drives are located.</a>
+<p>An initialization is used to update the database regularly enhanced by the community. The script will then scan the selected folder, which could be the /media/ folder, where USB sticks and other external hard drives are located.</a>
 
 To launch the script, don't forget to authorize the execution : <br/>`chmod +x ./clamav.sh`
 
