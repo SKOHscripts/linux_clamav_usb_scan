@@ -4,8 +4,6 @@
 https://brianmacdonald.github.io/Ethonate/svg/eth-support-blue.svg)](
 https://brianmacdonald.github.io/Ethonate/address#0xEDa4b087fac5faa86c43D0ab5EfCa7C525d475C2)
 
-![GitHub](https://img.shields.io/github/license/M66B/FairEmail.svg)
-
 <p>Un script shell qui utilise ClamAV®, un antivirus open-source, pour détecter les chevaux de Troie, les virus, les malwares et autres menaces.</p>
 
 <p>Une initialisation permet de mettre à jour la base de donnée régulièrement améliorée par la communauté. Le script va ensuite scanner le dossier /media/, dans lequel se trouvent les clefs USB et autre disques durs externes.</a>
