@@ -1,9 +1,11 @@
 #!/bin/bash
+#######################################################################################
+## A shell script, which uses the Clamav open-source antivirus engine to scan a folder.
+## Copyright (C) Corentin Michel - All Rights Reserved
+## Contact: corentin.michel@mailo.com [https://github.com/SKOHscripts]
+#######################################################################################
 
 rouge='\e[1;31m'
-vert='\e[1;33m'
-bleu='\e[1;34m'
-violet='\e[1;35m'
 vert='\e[1;32m'
 neutre='\e[0;m'
 
@@ -37,7 +39,7 @@ fi
         do echo -n "."
     done
     echo -e " $neutre"
-    zenity --info --width=300 --height=100 --text "You will be asked to enter your sudo password to update the virus database."
+    zenity --info --width=300 --height=100 --text "You will be asked to enter your sudo password twice to update the virus database."
     notify-send -i system-software-update "Clamav" "Mises à jour"
     systemctl stop clamav-freshclam
     sudo freshclam

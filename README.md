@@ -1,9 +1,8 @@
 # linux-clamav_usb_scan
+
 <img align="right" src="https://www.clamav.net/assets/clamav-trademark.png">
 
-[![support](
-https://brianmacdonald.github.io/Ethonate/svg/eth-support-blue.svg)](
-https://brianmacdonald.github.io/Ethonate/address#0xEDa4b087fac5faa86c43D0ab5EfCa7C525d475C2)
+[![support](https://brianmacdonald.github.io/Ethonate/svg/eth-support-blue.svg)](https://brianmacdonald.github.io/Ethonate/address#0xEDa4b087fac5faa86c43D0ab5EfCa7C525d475C2)
 
 <p>Un script shell qui utilise ClamAV®, un antivirus open-source, pour détecter les chevaux de Troie, les virus, les malwares et autres menaces.</p>
 
@@ -17,7 +16,7 @@ Et voilà, après tout se fait tout seul. Le résultat du scan sera sauvegardé 
 
 Une prochaine mise à jour permettra de choisir le dossier à scanner.
 
----
+* * *
 
 <p>A shell script that allows to do a complete maintenance of the Linux system (under Ubuntu). Useful <p>A shell script that uses ClamAV®, an open-source antivirus, to detect Trojans, viruses, malware and other threats.</p>
 
@@ -31,13 +30,10 @@ And that's it, then everything is done by itself. The scan result will be saved 
 
 A future update will allow you to choose the folder to scan.
 
-``` bash
+```bash
 #!/bin/bash
 
 rouge='\e[1;31m'
-vert='\e[1;33m'
-bleu='\e[1;34m'
-violet='\e[1;35m'
 vert='\e[1;32m'
 neutre='\e[0;m'
 
@@ -71,7 +67,7 @@ fi
         do echo -n "."
     done
     echo -e " $neutre"
-    zenity --info --width=300 --height=100 --text "You will be asked to enter your sudo password to update the virus database."
+    zenity --info --width=300 --height=100 --text "You will be asked to enter your sudo password twice to update the virus database."
     notify-send -i system-software-update "Clamav" "Mises à jour"
     systemctl stop clamav-freshclam
     sudo freshclam
@@ -91,5 +87,4 @@ fi
     echo " "
 
     notify-send -i dialog-ok "Clamav" "Scan terminé"
-
 ```
