@@ -42,6 +42,9 @@ fi
     zenity --info --width=300 --height=100 --text "You will be asked to enter your sudo password twice to update the virus database."
     notify-send -i system-software-update "Clamav" "Mises à jour"
     systemctl stop clamav-freshclam
+    # Thp only way I found to counter the «ERROR: Can't open /var/log/clamav/freshclam.log in append mode» error was to execute these two following lines :
+    sudo mkdir /var/log/clamav/
+    sudo chown -R clamav:clamav /var/log/clamav/
     sudo freshclam
     systemctl start clamav-freshclam
     echo " "
