@@ -4,87 +4,100 @@
 
 [![support](https://brianmacdonald.github.io/Ethonate/svg/eth-support-blue.svg)](https://brianmacdonald.github.io/Ethonate/address#0xEDa4b087fac5faa86c43D0ab5EfCa7C525d475C2)
 
-<p>Un script shell qui utilise ClamAV®, un antivirus open-source, pour détecter les chevaux de Troie, les virus, les malwares et autres menaces.</p>
+### Overview
 
-<p>Une initialisation permet de mettre à jour la base de donnée régulièrement améliorée par la communauté. Le script va ensuite scanner le dossier sélectionner, qui peut être /media/, dans lequel se trouvent les clefs USB et autre disques durs externes.</a>
+This script is a **robust shell utility** designed to scan directories for viruses using the open-source **ClamAV** engine. It combines **automated updates**, **safe scanning**, clear log reporting, and offers both command-line and graphical dialogs via Zenity for an optimal user experience.
 
-Pour lancer le script, ne pas oublier d'autoriser l'exécution : <br/>`chmod +x ./clamav.sh`
+## Features
 
-Puis se placer dans le dossier et exécuter le script : <br/>`./clamav.sh`
+- **Antivirus scan** with ClamAV (`clamscan`)
+- **Automatic update** of virus definitions before every scan (`freshclam`)
+- **Graphical dialogs** for selection and notifications (Zenity)
+- **Safe logging**: scan results saved with timestamp
+- **Dependency check**: verifies required software is installed
+- **User-friendly interface**: color-coded output and clear prompts
+- **Error handling**: manages edge cases and interruptions
+- **Git integration**: detects if target directory is a Git repo and shows last commit info
 
-Et voilà, après tout se fait tout seul. Le résultat du scan sera sauvegardé dans un fichier log `log_clamav.txt`.
+## Requirements
 
-Une prochaine mise à jour permettra de choisir le dossier à scanner.
+- Linux (tested on Ubuntu, Debian, Arch, etc.)
+- ClamAV (`clamav`, `clamav-daemon`)
+- Zenity (`zenity`)
+- Notify-send (`libnotify-bin`)
+- Bash (scripted for bash usage)
 
-* * *
+## Installation
 
-<p>A shell script that allows to do a complete maintenance of the Linux system (under Ubuntu). Useful <p>A shell script that uses ClamAV®, an open-source antivirus, to detect Trojans, viruses, malware and other threats.</p>
+1. **Clone or download** the script file (`clamav.sh`).
+2. Ensure dependencies:
+```
+   sudo apt install clamav clamav-daemon zenity libnotify-bin
+```
 
-<p>An initialization is used to update the database regularly enhanced by the community. The script will then scan the selected folder, which could be the /media/ folder, where USB sticks and other external hard drives are located.</a>
+3. Make the script executable:
+```
+   chmod +x clamav.sh
+```
 
-To launch the script, don't forget to authorize the execution : <br/>`chmod +x ./clamav.sh`
+## Usage
 
-Then place yourself in the folder and execute the script: <br/>`./clamav.sh`
-
-And that's it, then everything is done by itself. The scan result will be saved in a log file `log_clamav.txt`.
-
-A future update will allow you to choose the folder to scan.
+### Standard usage (with Zenity GUI):
 
 ```bash
-#!/bin/bash
-
-rouge='\e[1;31m'
-vert='\e[1;32m'
-neutre='\e[0;m'
-
-if [ "$UID" -eq "0" ]
-then
-    zenity --warning --height 80 --width 400 --title "EREUR" --text "Merci de lancez le script sans sudo : \n<b>./clamav.sh</b>\nVous devrez entrer le mot de passe root par la suite."
-    exit
-fi
-
-which notify-send > /dev/null
-if [ $? = 1 ]
-then
-	sudo apt install -y libnotify-bin
-fi
-
-which zenity > /dev/null
-if [ $? = 1 ]
-then
-	sudo apt install -y zenity
-fi
-
-which clamav > /dev/null
-if [ $? = 1 ]
-then
-	sudo apt install -y clamav clamav-daemon
-fi
-
-    echo ""
-    echo -e -n "$vert [1/2]$rouge MISE A JOUR "
-    for i in `seq 20 $COLUMNS`;
-        do echo -n "."
-    done
-    echo -e " $neutre"
-    zenity --info --width=300 --height=100 --text "You will be asked to enter your sudo password twice to update the virus database."
-    notify-send -i system-software-update "Clamav" "Mises à jour"
-    systemctl stop clamav-freshclam
-    sudo freshclam
-    systemctl start clamav-freshclam
-    echo " "
-
-    echo -e -n "$vert [2/2]$rouge SCAN "
-    for i in `seq 13 $COLUMNS`;
-        do echo -n "."
-    done
-    echo -e " $neutre"
-    echo > log_clamav.txt
-    zenity --info --width=300 --height=100 --text "Please select the folder you want to scan."
-    notify-send -i system-software-update "Clamav" "Scan"
-    inputStr=$(zenity --file-selection --directory "${HOME}")
-    clamscan -r --remove --bell --log=log_clamav.txt $inputStr
-    echo " "
-
-    notify-send -i dialog-ok "Clamav" "Scan terminé"
+./clamav.sh
 ```
+
+- **Database update**: You may be prompted for `sudo` password to update virus definitions.
+- **Directory selection**: Choose the folder you want to scan via a file picker.
+- **Notifications**: Desktop notifications follow each step.
+- **Log file**: The scan report is saved in a timestamped `.log` file.
+- **View details**: Option to see log/report at the end of the scan.
+
+### Command-line fallback
+
+If Zenity is not installed, the script falls back to text prompts.
+
+## Key Functions
+
+- **print_status**: Shows colored status messages ([INFO], [WARN], [ERROR], [SUCCESS])
+- **print_progress**: Displays a dynamic progress bar that fills the terminal line
+- **check_dependencies**: Ensures that all required tools are present
+- **update_clamav_db**: Updates virus definitions before scanning
+- **select_scan_directory**: Chooses the target folder graphically or via text input
+- **perform_scan**: Executes ClamAV scan, logs results, and summarizes findings
+- **print_git_info**: Displays last git commit if the scanned folder is a repository
+
+## Output
+
+- **Scan log**: A file `clamav_scan_YYYYMMDD_HHMMSS.log` is created in the working directory
+- **Notifications**: Desktop popups for key steps (requires notification system)
+- **Exit codes**: Script uses meaningful exit codes for automation and troubleshooting
+
+## Customization & Advanced Usage
+
+- **Scan options**: Edit the `clamscan` command in the script for deeper scan settings
+- **Integration**: Easily embedded in cron jobs or CI/CD (check exit codes for infection status)
+- **Sudo policy**: Script enforces non-root usage except for freshclam database update
+
+## Troubleshooting
+
+- **Missing dependencies**: The script will list missing commands and show install tips before exit
+- **Zenity warnings**: GTK/Adwaita warnings can be resolved by cleaning your `~/.config/gtk-4.0/settings.ini`
+- **Permission issues**: Run as normal user, enter `sudo` working password only when prompted for database updates
+
+## Example
+
+```bash
+./clamav.sh
+# Select folder -> Wait for scan -> View report > If infected files, take appropriate action!
+```
+
+## References
+
+- [ClamAV Documentation](http://www.clamav.net/)
+- [Zenity Documentation](https://www.tecmint.com/zenity-create-gtk-dialog-boxes-in-linux/)
+
+***
+
+**This script makes Linux file scanning with ClamAV simple, elegant and transparent for power users and non-technical users alike.**
